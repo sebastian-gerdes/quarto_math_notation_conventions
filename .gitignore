@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 quarto_templates.Rproj
+.DS_Store
