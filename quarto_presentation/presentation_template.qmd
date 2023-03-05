@@ -1,0 +1,100 @@
+---
+title: 'Presentation template'
+subtitle: 'Subtitle'
+date: '2023-03-05'
+# More about date formats: https://quarto.org/docs/reference/dates.html#using-a-date-style
+date-format: long
+author: 'Some author'
+format: 
+  revealjs:
+    # self-contained: true
+#    smaller: true
+    chalkboard: true
+    theme: solarized
+# More about themes: https://quarto.org/docs/presentations/revealjs/themes.html
+bibliography: bibliography.bib
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(dpi = 300,
+                      echo = FALSE,
+                      warning = FALSE,
+                      cache = FALSE,
+                      fig.width = 5,
+                      fig.height = 3,
+                      out.width = '100%')
+
+library('tidyverse') 
+theme_set(theme_bw())
+dat <- tibble(x = 0:100,
+              y = runif(101))
+gg <- dat %>% ggplot(aes(x, y)) + geom_point()
+```
+
+## Introduction
+*   First bullet point
+*   Second bullet point
+    + Subbullet 1
+    + Subbullet 2
+        - Subsubbullet 1
+* They showed something [@lavinder_boosted_2022]
+
+## Single plot without text
+```{r}
+#| fig-align: center
+gg
+```
+
+## Fixed aspect ratio
+```{r}
+#| fig-align: center
+gg + theme(aspect.ratio = 1)
+```
+
+## Single plot with bullets underneath
+```{r}
+#| fig-align: center
+#| fig-width: 2.5
+#| fig-height: 2.5
+
+ # increase fig-width to get a wider figure
+gg
+```
+* Bullet 1 - try to use not more than two bullets
+* Otherwise the figure will shrink
+
+## Single plot with bullets aside
+::: columns
+::: {.column width="50%"}
+* Bullet 1 
+* Bullet 2
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-width: 3
+gg
+```
+:::
+:::
+
+## The other way round
+::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-width: 3
+gg
+```
+:::
+::: {.column width="50%"}
+* Bullet 1 
+* Bullet 2
+:::
+:::
+
+
+
+## References
